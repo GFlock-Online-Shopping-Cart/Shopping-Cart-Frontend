@@ -1,12 +1,17 @@
-import { getPublicResource } from "../services/authenticationServise";
+import { getPublicResource } from "../services/apiCallServise";
 
 export const ProducsPage = () => {
     const getAllProducts = async () => {
-        const { data, error } = await getPublicResource();
+        const getProducts = await getPublicResource('product/products', 'GET');
+        console.log(getProducts);
         
     }
 
+    getAllProducts();
+    
     return (
+        <>
         <h1>Products</h1>
+        </>
     )
 }

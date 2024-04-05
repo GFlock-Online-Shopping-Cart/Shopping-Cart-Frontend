@@ -1,7 +1,39 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { getProtectedResource } from "../services/apiCallServise";
 
 export const ProfilePage = () => {
-    const { user } = useAuth0();
+    const [message, setMessage] = useState("");
+    const { getAccessTokenSilently,  user } = useAuth0();
+
+    useEffect(() => {
+        let isMounted = true;
+
+        const createProfile = async () => {
+            const accessToken = await getAccessTokenSilently();
+            const { data, error } = await getProtectedResource(accessToken, 'user/create-profile', 'POST', user as any);
+            console.log("Access Token", accessToken);
+            
+            if (!isMounted) {
+                return;
+            }
+
+            if (data) {
+                setMessage(JSON.stringify(data, null, 2));
+            }
+
+            if (error) {
+                setMessage(JSON.stringify(error, null, 2));
+            }
+        };
+
+        createProfile();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [getAccessTokenSilently]);
 
     if (!user) {
         return null;
@@ -15,7 +47,7 @@ export const ProfilePage = () => {
                     <p id="page-description">
                         <span>You can use the <strong>ID Token</strong> to get the profile information of an authenticated user.</span>
                         <span>
-                            <strong>Only authenticated users can acccd ess this page.</strong>
+                            <strong>Only authenticated users can acccess this page.</strong>
                         </span>
                     </p>
 

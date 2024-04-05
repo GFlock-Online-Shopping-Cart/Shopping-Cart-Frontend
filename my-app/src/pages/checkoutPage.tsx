@@ -2,20 +2,26 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { getProtectedResource } from "../services/apiCallServise";
 
-export const CartPage = () => {
+export const CheckoutPage = () => {
     const [message, setMessage] = useState("");
 
-    const { getAccessTokenSilently, user } = useAuth0();
+    const { getAccessTokenSilently, user, getIdTokenClaims } = useAuth0();
 
     useEffect(() => {
         let isMounted = true;
 
-        const addToCart = async () => {
-            const accessToken = await getAccessTokenSilently();  //fetch a new access token from the Auth0
-            const { data, error } = await getProtectedResource(accessToken, 'cart/add-to-cart', 'POST', user as any);
+        const createCheckout = async () => {
+            const accessToken = await getAccessTokenSilently();
+            const idToken = await getIdTokenClaims()
+            const { data, error } = await getProtectedResource(accessToken, 'chcekout/create-checkout', 'POST', user as any);
+            const options = {
+                
+            }
             console.log("Access Token", accessToken);
-         
-            if (!isMounted) {
+            console.log("Id token", idToken?.__raw);
+            
+
+            if(!isMounted) {
                 return;
             }
 
@@ -27,8 +33,8 @@ export const CartPage = () => {
                 setMessage(JSON.stringify(error, null, 2));
             }
         };
-
-        addToCart();
+        
+        createCheckout();
 
         return () => {
             isMounted = false;
@@ -36,8 +42,6 @@ export const CartPage = () => {
     }, [getAccessTokenSilently]);
 
     return (
-        <>
-        <h1>Cart</h1>
-        </>
+        <h1>Checkout page</h1>
     )
 }

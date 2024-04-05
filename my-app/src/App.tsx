@@ -8,6 +8,7 @@ import { AuthenticationGuard } from "./components/authenticationGuard";
 import { ProfilePage } from "./pages/profilePage";
 import { CartPage } from "./pages/cartPage";
 import { ProducsPage } from "./pages/producsPage";
+import { CheckoutPage } from "./pages/checkoutPage";
 
 export const App = () => {
   // const { isLoading } =useAuth0();
@@ -22,12 +23,30 @@ export const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Homepage/>} />
+      {/* public routes */}
+      <Route 
+        path="/" 
+        element={<Homepage/>} />
+
+      <Route 
+        path="/products" 
+        element={<ProducsPage />} 
+      />
+
+      {/* protected routes */}
       <Route 
         path="/profile" 
         element={<AuthenticationGuard component={ProfilePage} />} 
       />
-      <Route path="/cart" element={<CartPage/>}/>
-      <Route path="/products" element={<ProducsPage />} />
+      <Route 
+        path="/cart"
+        element={<AuthenticationGuard component={CartPage} />}
+      />
+
+      <Route
+        path="/checkout"
+        element={<AuthenticationGuard component={CheckoutPage} />}
+      />
+
     </Routes>)
 }
