@@ -16,9 +16,6 @@ export const NavBarButtons = () => {
       <div className="flex justify-end">
         {!isAuthenticated && (
           <>
-          <div className="text-xl text-white flex items-center pr-[1rem] cursor-pointer">
-            <HiShoppingCart />
-          </div>
             <SignupButton />
             <LoginButton />
           </>
@@ -26,6 +23,9 @@ export const NavBarButtons = () => {
 
         {isAuthenticated && (
           <>
+          <div className="text-xl text-white flex items-center pr-[1rem] cursor-pointer">
+            <HiShoppingCart />
+          </div>
             <LogoutButton />
           </>
         )}
