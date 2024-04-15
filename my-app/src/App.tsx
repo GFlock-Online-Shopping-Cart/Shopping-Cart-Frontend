@@ -7,9 +7,10 @@ import {
 import { AuthenticationGuard } from "./components/authenticationGuard";
 import { ProfilePage } from "./pages/profilePage";
 import { CartPage } from "./pages/cartPage";
-import { ProducsPage } from "./pages/producsPage";
+import { ProductsPage } from "./pages/productsPage";
 import { CheckoutPage } from "./pages/checkoutPage";
 import { SingleProductPage } from "./pages/singleProductPage";
+import { ProductsByCategoryPage } from "./pages/productsByCategoryPage";
 export const App = () => {
   // const { isLoading } =useAuth0();
 
@@ -25,12 +26,17 @@ export const App = () => {
       {/* public routes */}
       <Route 
         path="/products" 
-        element={<ProducsPage />} 
+        element={<ProductsPage />} 
       />
 
       <Route
         path="/single-product/:productId"
         element={<SingleProductPage />}
+      />
+
+      <Route 
+        path="/products/categoryId/:categoryId"
+        element={<ProductsByCategoryPage/>}
       />
 
       {/* protected routes */}

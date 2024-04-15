@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getPublicResource } from "../services/apiCallServise";
 import { Dropdown } from "../components/dropdown";
 import { NavBarButtons } from "../components/navBar";
 import { ProductCard } from "../components/productCard";
 import { SearchBar } from "../components/searchBar";
-import { useNavigate } from "react-router-dom";
 
-export const ProducsPage = () => {
+export const ProductsPage = () => {
   const getAllProducts = async () => {
     const getProducts = await getPublicResource("product/products", "GET");
-    return getProducts.data.data;
+    return getProducts?.data?.data;
   };
 
   const getAllCategories = async () => {
     const getCategories = await getPublicResource("category/getAllCategories", "GET");
-    return getCategories.data.data;
+    return getCategories?.data?.data;
   };
 
   const [productData, setProductData] = useState<Array<ProductType>>([]);
@@ -24,12 +24,14 @@ export const ProducsPage = () => {
     });
   });
 
+  const { categoryId } = useParams();
   const [categoryData, setCategoryData] = useState<Array<CategoryType>>([]);
   useEffect(() => {
     getAllCategories().then((result: any) => {
       setCategoryData(result);
-    })
-  })
+    });
+  }, []);
+
 
   return (
     <>
@@ -41,12 +43,13 @@ export const ProducsPage = () => {
         <SearchBar />
         <Dropdown 
             categoryItems={categoryData}
+            categoryId={Number(categoryId)}
         />
 
       </div>
 
       <div className="items-center grid grid-cols-4 gap-4 px-[3rem]">
-        {productData.map((productData: ProductType) => (
+        {(productData || []).map((productData: ProductType) => (
           <ProductCard
             key={productData.id}
             productItems={productData} 
