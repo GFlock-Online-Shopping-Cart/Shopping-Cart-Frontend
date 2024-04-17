@@ -11,16 +11,9 @@ import { ProductsPage } from "./pages/productsPage";
 import { CheckoutPage } from "./pages/checkoutPage";
 import { SingleProductPage } from "./pages/singleProductPage";
 import { ProductsByCategoryPage } from "./pages/productsByCategoryPage";
+import { OrderHistoryPage } from "./pages/orderHistoryPage";
+import { SingleOrderPage } from "./pages/singleOrderPage";
 export const App = () => {
-  // const { isLoading } =useAuth0();
-
-  // if(isLoading) {
-  //   return (
-  //     <div>
-        
-  //     </div>
-  //   )
-  // }
   return (
     <Routes>
       {/* public routes */}
@@ -52,6 +45,16 @@ export const App = () => {
       <Route
         path="/checkout"
         element={<AuthenticationGuard component={CheckoutPage} />}
+      />
+
+      <Route 
+        path="/order-history"
+        element={<AuthenticationGuard component={OrderHistoryPage} />}
+      />
+
+      <Route 
+        path="/single-checkout/:checkoutId"
+        element={<AuthenticationGuard component={SingleOrderPage} />}
       />
 
     </Routes>)

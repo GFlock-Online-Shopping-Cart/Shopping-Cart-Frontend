@@ -1,5 +1,6 @@
 import React from "react";
 import { ButtonComponent } from "./button";
+import { QuantityAdjuster } from "./quantityAdjuster";
 
 interface ItemProps {
     productItem: ProductType;
@@ -17,9 +18,13 @@ export const SingleProduct: React.FC<ItemProps> = (productItem) => {
                 <h1 className="text-[3rem] font-bold">{productItem.productItem.productName}</h1>
                 <p className="text-[1.5rem]">{productItem.productItem.description}</p>
                 <p className="text-[3rem] text-red-600 font-bold">Rs.{productItem.productItem.price}.00</p>
-                <ButtonComponent
-                buttonName="Add to Cart"
-                />
+
+                <div className="mr-4 flex-col items-center">
+                    <QuantityAdjuster quantity={0}/>
+                    <ButtonComponent
+                        buttonName="Add to Cart"
+                    />
+                </div>
             </div>
         </div>
         </>

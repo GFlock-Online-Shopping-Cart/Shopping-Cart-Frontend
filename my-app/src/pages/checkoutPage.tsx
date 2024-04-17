@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { getProtectedResource } from "../services/apiCallServise";
+import { getProtectedResource } from "../services/api/apiCallServise";
 
 export const CheckoutPage = () => {
     const [message, setMessage] = useState("");

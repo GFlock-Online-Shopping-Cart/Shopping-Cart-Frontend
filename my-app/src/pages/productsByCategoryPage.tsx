@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getPublicResource } from "../services/apiCallServise";
 import { NavBarButtons } from "../components/navBar";
 import { SearchBar } from "../components/searchBar";
 import { CategoryProductsCard } from "../components/categoryProductsCard";
+import { getProductsByCategoryId } from "../services/getProductsByCategoryId";
 
 interface RouteParams {
   [key: string]: string | undefined;
@@ -13,14 +13,6 @@ interface RouteParams {
 export const ProductsByCategoryPage = () => {
 
   const { categoryId } = useParams<RouteParams>();
-
-  const getProductsByCategoryId = async (categoryId: number) => {
-    const getProductsByCategoryId = await getPublicResource(
-      `category/getProductsBycategoryId/${categoryId}`,
-      "GET"
-    );
-    return getProductsByCategoryId?.data?.data;
-  };
 
   const [categoryProductsData, setCategoryProductsData] = useState<Array<CategoryProductsType>>([]);
   useEffect(() => {

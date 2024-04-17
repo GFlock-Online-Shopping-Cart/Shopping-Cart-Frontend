@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
-import { Auth0ProviderWithNavigate } from "./services/auth0ProviderNavigate";
+import { Auth0ProviderWithNavigate } from "./services/api/auth0ProviderNavigate";
 
 import "./index.css";
 

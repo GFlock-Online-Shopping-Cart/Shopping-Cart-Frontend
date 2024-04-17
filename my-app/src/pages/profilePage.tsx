@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { getProtectedResource } from "../services/apiCallServise";
+import { getProtectedResource } from "../services/api/apiCallServise";
 
 export const ProfilePage = () => {
     const [message, setMessage] = useState("");

@@ -23,14 +23,14 @@ export const QuantityAdjuster: React.FC<QuantityProps> = ({ minValue = 0, maxVal
 
     return (
         <div className="flex gap-3 w-[7rem]">
-            <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleIncrementCounter}>
-                <span className="font-bold text-[1.2rem]">+</span>
-            </button>
-
-            <p className="flex items-center justify-center font-semibold w-[1rem]">{count}</p>
-
             <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleDecrementCounter}>
                 <span className="font-bold text-[1.2rem]">-</span>
+            </button>
+            
+            <p className="flex items-center justify-center font-semibold w-[1rem]">{count}</p>
+
+            <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleIncrementCounter}>
+                <span className="font-bold text-[1.2rem]">+</span>
             </button>
         </div>
     )

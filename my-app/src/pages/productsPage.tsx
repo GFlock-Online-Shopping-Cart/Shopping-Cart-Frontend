@@ -1,28 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getPublicResource } from "../services/apiCallServise";
 import { Dropdown } from "../components/dropdown";
 import { NavBarButtons } from "../components/navBar";
 import { ProductCard } from "../components/productCard";
 import { SearchBar } from "../components/searchBar";
+import { getAllProducts } from "../services/getAllProductsService";
+import { getAllCategories } from "../services/getAllCategories";
 
 export const ProductsPage = () => {
-  const getAllProducts = async () => {
-    const getProducts = await getPublicResource("product/products", "GET");
-    return getProducts?.data?.data;
-  };
-
-  const getAllCategories = async () => {
-    const getCategories = await getPublicResource("category/getAllCategories", "GET");
-    return getCategories?.data?.data;
-  };
-
   const [productData, setProductData] = useState<Array<ProductType>>([]);
   useEffect(() => {
     getAllProducts().then((result: any) => {
       setProductData(result);
     });
-  });
+  }, []);
 
   const { categoryId } = useParams();
   const [categoryData, setCategoryData] = useState<Array<CategoryType>>([]);

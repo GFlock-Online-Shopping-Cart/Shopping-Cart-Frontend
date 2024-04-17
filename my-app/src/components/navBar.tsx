@@ -10,7 +10,7 @@ export const NavBarButtons = () => {
   return (
     <div className="flex justify-between px-[2rem] h-[50px]">
       <div className="flex gap-3 items-center">
-        <img className="w-[30px] h-[30px]" src="logo.jpg" alt="logo" />
+        <img className="w-[30px] h-[30px]" src="/logo.jpg" alt="logo" />
         <h2 className="text-white text-2xl font-extrabold">GFlock</h2>
       </div>
       <div className="flex justify-end">

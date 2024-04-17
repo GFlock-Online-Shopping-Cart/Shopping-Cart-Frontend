@@ -1,9 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { getProtectedResource } from "../services/apiCallServise";
 import { NavBarButtons } from "../components/navBar";
 import { CartProductCard } from "../components/cartProductCard";
 import { ButtonComponent } from "../components/button";
+import { viewCart } from "../services/viewCart";
 
 export const CartPage = () => {
   const [message, setMessage] = useState("");
@@ -13,47 +13,24 @@ export const CartPage = () => {
   
   useEffect(() => {
     let isMounted = true;
-    const viewCart = async () => {
-        const accessToken = await getAccessTokenSilently(); //fetch a new access token from the Auth0
-        const { data, error } = await getProtectedResource(accessToken, "cart/view-cart", "GET", user as any);
-        console.log("Access Token", accessToken);    
-          
+
+    viewCart(getAccessTokenSilently, user).then((result: any) => {
         if (!isMounted) {
             return;
         }
         
-        if (data) {
-          setMessage(JSON.stringify(data, null, 2));
-          console.log("data :", data.data);
-          return data.data;
-        }
-    
-        if (error) {
-          setMessage(JSON.stringify(error, null, 2));
-        }
-    };
-
-
-    viewCart().then((result: any) => {
         if (Array.isArray(result)) {
             setCartItemData(result);
         } else {
-            console.error('Data is not an array:', result);
+            setMessage(JSON.stringify(result, null, 2));
         }
-        // setCartItemData(result);
-    })
+    });
+
     return () => {
         isMounted = false;
     };
   }, [getAccessTokenSilently])
-
-//   useEffect(() => {
-//     return () => {
-//       isMounted = false;
-//     };
-//   }, [getAccessTokenSilently]);
   
-
   return (
     <>
     <div className="bg-black">
