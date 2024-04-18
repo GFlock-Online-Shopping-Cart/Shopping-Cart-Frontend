@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavBarButtons } from "../components/navBar";
 import { CartProductCard } from "../components/cartProductCard";
 import { ButtonComponent } from "../components/button";
@@ -48,7 +48,9 @@ export const CartPage = () => {
 
         <div className="rounded-lg shadow-lg shadow-black md:shadow-xl md:shadow-black-500 p-[2rem] w-1/3">
             <p className="text-[1.3rem] font-bold">Order Summary</p>
-            <ButtonComponent buttonName="Proceed to Checkout" />
+            <ButtonComponent 
+                buttonName="Proceed to Checkout" 
+            />
         </div>
     </div>
     </>

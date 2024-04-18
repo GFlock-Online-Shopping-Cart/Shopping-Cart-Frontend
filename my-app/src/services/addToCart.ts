@@ -1,9 +1,21 @@
 import { getProtectedResource } from "./api/apiCallServise";
 
-export const addToCart = async (getAccessTokenSilently: any, user: any) => {
+interface AddToCartRequest {
+    productId: number;
+    quantity: number;
+}
+
+export const addToCart = async (getAccessTokenSilently: any, newCartItem: AddToCartRequest) => {
     const accessToken = await getAccessTokenSilently();
-    const { data, error } = await getProtectedResource(accessToken, "cart/add-to-cart", "POST", user as any);
+    // const requestBody = {
+    //     user,
+    //     ...newCartItem
+    // };
+    
+    const { data, error } = await getProtectedResource(accessToken, "cart/add-to-cart", "POST", newCartItem);
     console.log("Access token", accessToken);
+    // console.log("NewSSSS cart item", newCartItem);
+    
 
     if (data) {
         console.log("data: ", data.data);
