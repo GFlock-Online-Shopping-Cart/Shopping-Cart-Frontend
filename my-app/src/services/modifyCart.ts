@@ -1,8 +1,8 @@
 import { getProtectedResource } from "./api/apiCallServise";
 
-export const getCheckoutById = async (getAccessTokenSilently: any, user: any, checkoutId: number) => {
+export const modifyCart = async (getAccessTokenSilently: any, productId: number, quantity: number) => {
     const accessToken = await getAccessTokenSilently();
-    const { data, error } = await getProtectedResource(accessToken, `checkout/getCheckoutById/${checkoutId}`, "GET", user as any);
+    const { data, error } = await getProtectedResource(accessToken, "cart/modify-cart", "PUT", {productId, quantity});
     console.log("Access token", accessToken);
 
     if (data) {

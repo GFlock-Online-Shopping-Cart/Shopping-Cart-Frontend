@@ -11,11 +11,6 @@ export const CategoryProductsCard: React.FC<ItemProps> = ({productCategoryItems}
     navigate(`/single-product/${productId}`)
   }
 
-  console.log(productCategoryItems);
-  console.log("eree",productCategoryItems.category_id);
-  
-  
-
   return (
     <div 
       className="w-[15rem] h-[23rem] m-[1rem] rounded-lg shadow-lg shadow-black md:shadow-xl md:shadow-black-500 cursor-pointer dark:md:hover:bg-[#EEEEEE] transition-transform duration-100 ease-in-out transform hover:scale-105" 

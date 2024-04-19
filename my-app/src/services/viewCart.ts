@@ -6,7 +6,6 @@ export const viewCart = async (getAccessTokenSilently: any, user: any) => {
     console.log("Access Token", accessToken);    
 
     if (data) {
-      console.log("data :", data.data);
       return data.data;
     }else if (error) {
       return error;

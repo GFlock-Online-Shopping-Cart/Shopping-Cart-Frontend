@@ -11,7 +11,6 @@ export const addToCart = async (getAccessTokenSilently: any, newCartItem: AddToC
     console.log("Access token", accessToken);    
 
     if (data) {
-        console.log("data: ", data.data);
         return data.data;
     } else if (error) {
         return error;

@@ -5,10 +5,20 @@ import { CartProductCard } from "../components/cartProductCard";
 import { ButtonComponent } from "../components/button";
 import { viewCart } from "../services/viewCart";
 import { removeProductFromCart } from "../services/removeProductFromCart";
+import { modifyCart } from "../services/modifyCart";
+
+interface modifyCartRequest {
+    productId: number;
+    quantity: number;
+}
 
 export const CartPage = () => {
   const [message, setMessage] = useState("");
   const [cartItemData, setCartItemData] = useState<Array<CartType>>([]);
+  const [updateCartItem, setUpdateCartItem] = useState<modifyCartRequest>({
+    productId: 0,
+    quantity: 1
+  });
 
   const { getAccessTokenSilently, user } = useAuth0();
 
@@ -36,9 +46,20 @@ export const CartPage = () => {
     await removeProductFromCart(getAccessTokenSilently, user, productId);
     const updatedCartItems = cartItemData.filter(item => item.productId !== productId);
     setCartItemData(updatedCartItems);
-    console.log("Updated cart items", updatedCartItems);
-    
   }
+
+  const handleQuantityChange = (quantity: number) => {
+    setUpdateCartItem((prevState) => ({ ...prevState, quantity }));
+  };
+
+  
+  const handleModify = async (productId: number, quantity: number) => {
+    await modifyCart(getAccessTokenSilently, productId, quantity);  
+  }
+
+  useEffect(() => {
+    setUpdateCartItem(updateCartItem);
+  }, [])
   
   return (
     <>
@@ -52,6 +73,8 @@ export const CartPage = () => {
                     key={cartItemData.productId}
                     cartItems={cartItemData}
                     onDelete={handleDelete}
+                    onQuantityChange={handleQuantityChange}
+                    onModify={handleModify}
                 />
             ))}
         </div>
