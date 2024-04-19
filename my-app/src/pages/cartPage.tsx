@@ -4,13 +4,14 @@ import { NavBarButtons } from "../components/navBar";
 import { CartProductCard } from "../components/cartProductCard";
 import { ButtonComponent } from "../components/button";
 import { viewCart } from "../services/viewCart";
+import { removeProductFromCart } from "../services/removeProductFromCart";
 
 export const CartPage = () => {
   const [message, setMessage] = useState("");
   const [cartItemData, setCartItemData] = useState<Array<CartType>>([]);
 
   const { getAccessTokenSilently, user } = useAuth0();
-  
+
   useEffect(() => {
     let isMounted = true;
 
@@ -30,6 +31,14 @@ export const CartPage = () => {
         isMounted = false;
     };
   }, [getAccessTokenSilently])
+
+  const handleDelete = async (productId: number) => {
+    await removeProductFromCart(getAccessTokenSilently, user, productId);
+    const updatedCartItems = cartItemData.filter(item => item.productId !== productId);
+    setCartItemData(updatedCartItems);
+    console.log("Updated cart items", updatedCartItems);
+    
+  }
   
   return (
     <>
@@ -42,6 +51,7 @@ export const CartPage = () => {
                 <CartProductCard
                     key={cartItemData.productId}
                     cartItems={cartItemData}
+                    onDelete={handleDelete}
                 />
             ))}
         </div>

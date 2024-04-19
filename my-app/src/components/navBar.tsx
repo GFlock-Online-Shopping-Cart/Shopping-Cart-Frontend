@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi2";
 import { LoginButton } from "./loginButton";
 import { SignupButton } from "./signupButton";
@@ -6,7 +7,11 @@ import { LogoutButton } from "./logoutButton";
 
 export const NavBarButtons = () => {
   const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
+  const handleCartClick = () => {
+    navigate('/cart');
+  }
   return (
     <div className="flex justify-between px-[2rem] h-[50px]">
       <div className="flex gap-3 items-center">
@@ -23,7 +28,7 @@ export const NavBarButtons = () => {
 
         {isAuthenticated && (
           <>
-          <div className="text-xl text-white flex items-center pr-[1rem] cursor-pointer">
+          <div onClick={handleCartClick} className="text-xl text-white flex items-center pr-[1rem] cursor-pointer">
             <HiShoppingCart />
           </div>
             <LogoutButton />

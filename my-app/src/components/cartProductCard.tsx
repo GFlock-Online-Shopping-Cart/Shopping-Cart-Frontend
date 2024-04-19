@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa6";
 import { QuantityAdjuster } from "./quantityAdjuster";
+import { removeProductFromCart } from "../services/removeProductFromCart";
+import { viewCart } from "../services/viewCart";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface CartItemProps {
     cartItems: CartType
+    onDelete: (productId: number) => void
 }
 
-export const CartProductCard: React.FC<CartItemProps> = ({cartItems}) => {
+export const CartProductCard: React.FC<CartItemProps> = ({cartItems, onDelete}) => {
+    console.log("QUANTITY",cartItems.quantity);
+
+    const handleDelete = async () => {
+        onDelete(cartItems.productId);
+    }
     return (
         <>
         <div className="flex gap-6 rounded-lg shadow-lg items-center shadow-black md:shadow-xl md:shadow-black-500 m-[2rem]">
@@ -20,9 +29,11 @@ export const CartProductCard: React.FC<CartItemProps> = ({cartItems}) => {
                 <div className="flex gap-12 items-center cursor-pointer my-[0.5rem]">
                     <QuantityAdjuster 
                         quantity={cartItems.quantity}
+
                     />
-                    {/* <p>{cartItems.quantity}</p> */}
-                    <FaTrash/>
+                    <div onClick={handleDelete}>
+                        <FaTrash/>
+                    </div>
                 </div>
             </div>
         </div>

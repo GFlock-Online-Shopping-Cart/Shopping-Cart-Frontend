@@ -44,7 +44,6 @@ export const Dropdown: React.FC<ItemProps> = ({categoryItems, categoryId}) => {
     const categoryId = selectedOption.value;
     const products = await getProductsByCategoryId(categoryId);
     setProductByCategoryIdData(products);
-    console.log("Pfpd", products);
 
     navigate(`/products/categoryId/${categoryId}`);
   };

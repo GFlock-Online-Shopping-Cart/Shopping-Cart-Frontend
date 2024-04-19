@@ -7,15 +7,15 @@ interface QuantityProps {
     onQuantityChange?: (quantity: number) => void;
 }
 
-export const QuantityAdjuster: React.FC<QuantityProps> = ({ minValue = 1, maxValue = 100, onQuantityChange }) => {
-    const [count, setCount] = useState(minValue);
+export const QuantityAdjuster: React.FC<QuantityProps> = ({ quantity, minValue = 1, maxValue = 100, onQuantityChange }) => {
+    const [count, setCount] = useState(quantity);
 
     const handleIncrementCounter = () => {
         if (count < maxValue) {
-            const newCount = count + 1;
-            setCount(newCount);
+            quantity = count + 1;
+            setCount(quantity);
             if (onQuantityChange) {
-                onQuantityChange(newCount);
+                onQuantityChange(quantity);
             }
             
         }
@@ -23,10 +23,10 @@ export const QuantityAdjuster: React.FC<QuantityProps> = ({ minValue = 1, maxVal
 
     const handleDecrementCounter = () => {
         if (count > minValue) {
-            const newCount = count - 1;
-            setCount(newCount);
+            quantity = count - 1;
+            setCount(quantity);
             if (onQuantityChange) {
-                onQuantityChange(newCount);
+                onQuantityChange(quantity);
             }
 
         }

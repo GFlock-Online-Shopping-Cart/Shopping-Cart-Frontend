@@ -26,20 +26,16 @@ export const SingleProductPage = () => {
     quantity: 1,
   });  
   const navigate = useNavigate();
-  const { getAccessTokenSilently, user } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const handleQuantityChange = (quantity: number) => {
-    console.log('Quantity changed:', quantity);
     setNewCartItem((prevState) => ({ ...prevState, quantity }));
   };
 
   const handleAddToCart = async () => {
     try {
-      console.log("123NewCartItem", newCartItem);
       await addToCart(getAccessTokenSilently, newCartItem);
-      navigate("/cart");
-      
-      
+      navigate("/cart"); 
     } catch (error: any) {
       return error.message;
     }

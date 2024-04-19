@@ -19,7 +19,6 @@ export const getPublicResource = async (route: string, method: string) => {
 };
 
 export const getProtectedResource = async (accessToken: string, route: string, method: string, user: {}) => {
-    console.log("CART ITEM : ", user)
     const config = {
         url: `${apiServerUrl}/${route}`,
         method: method,

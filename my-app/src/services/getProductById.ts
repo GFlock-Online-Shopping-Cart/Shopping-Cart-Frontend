@@ -1,7 +1,4 @@
-import { useParams } from "react-router-dom";
 import { getPublicResource } from "./api/apiCallServise";
-// const { productId } = useParams();
-
 
 export const getProductById = async (productId: number) => {
   try {
