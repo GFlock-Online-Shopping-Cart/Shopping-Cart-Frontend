@@ -17,7 +17,6 @@ interface CreateProfileRequest {
 
 export const ProfilePage = () => {
   const { getAccessTokenSilently, user } = useAuth0();
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [newProfile, setNewProfile] = useState<CreateProfileRequest>({
     firstName: "",
@@ -35,7 +34,7 @@ export const ProfilePage = () => {
       navigate("/products");
       console.log(newProfile);
     } catch (error: any) {
-      console.log("Error Message", error.message);
+      return error.message;
     }
   };
 
@@ -46,25 +45,6 @@ export const ProfilePage = () => {
       [name]: value,
     }));
   };
-
-  if (!user) {
-    return null;
-  }
-
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   setNewProfile({
-  //     firstName: "",
-  //     lastName: "",
-  //     mobileNumber: "",
-  //     streetAddress: "",
-  //     city: "",
-  //     province: ""
-  //   })
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, [getAccessTokenSilently]);
 
   if (!user) {
     return null;
@@ -197,18 +177,6 @@ export const ProfilePage = () => {
               <ButtonComponent buttonName="Submit" />
             </div>
           </form>
-
-          {/* <div>
-            <img src="{user.picture}" alt="Profile" />
-            <div>
-              <h2>{user.name}</h2>
-              <span>{user.email}</span>
-            </div>
-            <div>
-              <h3>Decoded ID Token</h3>
-              {JSON.stringify(user, null, 2)}
-            </div>
-          </div> */}
         </div>
       </div>
     </>

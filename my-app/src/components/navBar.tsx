@@ -10,13 +10,19 @@ export const NavBarButtons = () => {
   const navigate = useNavigate();
 
   const handleCartClick = () => {
-    navigate('/cart');
-  }
+    navigate("/cart");
+  };
+
+  const handleLogoClick = () => {
+    navigate("/products");
+  };
   return (
     <div className="flex justify-between px-[2rem] h-[50px]">
       <div className="flex gap-3 items-center">
-        <img className="w-[30px] h-[30px]" src="/logo.jpg" alt="logo" />
-        <h2 className="text-white text-2xl font-extrabold">GFlock</h2>
+        <div className="flex gap-2 cursor-pointer" onClick={handleLogoClick}>
+          <img className="w-[30px] h-[30px]" src="/logo.jpg" alt="logo" />
+          <h2 className="text-white text-2xl font-extrabold">GFlock</h2>
+        </div>
       </div>
       <div className="flex justify-end">
         {!isAuthenticated && (
@@ -28,9 +34,12 @@ export const NavBarButtons = () => {
 
         {isAuthenticated && (
           <>
-          <div onClick={handleCartClick} className="text-xl text-white flex items-center pr-[1rem] cursor-pointer">
-            <HiShoppingCart />
-          </div>
+            <div
+              onClick={handleCartClick}
+              className="text-xl text-white flex items-center pr-[1rem] cursor-pointer"
+            >
+              <HiShoppingCart />
+            </div>
             <LogoutButton />
           </>
         )}

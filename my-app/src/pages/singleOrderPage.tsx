@@ -51,16 +51,6 @@ export const SingleOrderPage = () => {
             )}
 
         </div>
-
-
-        {/* <div className="">
-            {(singleOrderData || []).map((singleOrderData: SingleOrderType) => (
-                <SingleOrderCard 
-                    key={singleOrderData.id}
-                    orderDetails={singleOrderData}
-                />
-            ))}
-        </div> */}
         </>
     )
 }

@@ -13,6 +13,8 @@ import { SingleProductPage } from "./pages/singleProductPage";
 import { ProductsByCategoryPage } from "./pages/productsByCategoryPage";
 import { OrderHistoryPage } from "./pages/orderHistoryPage";
 import { SingleOrderPage } from "./pages/singleOrderPage";
+import { OrderSuccessfulPage } from "./pages/orderSuccessfulPage";
+
 export const App = () => {
   return (
     <Routes>
@@ -57,5 +59,11 @@ export const App = () => {
         element={<AuthenticationGuard component={SingleOrderPage} />}
       />
 
-    </Routes>)
+      <Route 
+        path="/order-successful/:checkoutId"
+        element={<AuthenticationGuard component={OrderSuccessfulPage} />}
+      />
+
+    </Routes>
+  )
 }

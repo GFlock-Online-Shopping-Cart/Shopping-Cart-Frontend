@@ -1,12 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavBarButtons } from "../components/navBar";
 import { CartProductCard } from "../components/cartProductCard";
 import { ButtonComponent } from "../components/button";
 import { viewCart } from "../services/viewCart";
 import { removeProductFromCart } from "../services/removeProductFromCart";
 import { modifyCart } from "../services/modifyCart";
-import { count } from "console";
 
 interface modifyCartRequest {
   productId: number;
@@ -24,6 +24,7 @@ export const CartPage = () => {
   });
 
   const { getAccessTokenSilently, user } = useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let isMounted = true;
@@ -60,6 +61,10 @@ export const CartPage = () => {
   const handleModify = async (productId: number, quantity: number) => {
     await modifyCart(getAccessTokenSilently, productId, quantity);
   };
+
+  const handleProceedToCheckout = async () => {
+    navigate('/checkout');
+  }
 
   useEffect(() => {
     setUpdateCartItem(updateCartItem);
@@ -107,7 +112,11 @@ export const CartPage = () => {
           </div>
 
           <div className="flex justify-center">
-            <ButtonComponent buttonName="Proceed to Checkout" />
+            <ButtonComponent 
+              buttonName="Proceed to Checkout" 
+              onClick={handleProceedToCheckout}
+            />
+            
           </div>
         </div>
       </div>

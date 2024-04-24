@@ -5,7 +5,6 @@ import { SingleProduct } from "../components/singleProduct";
 import { getProductById } from "../services/getProductById";
 import { addToCart } from "../services/addToCart";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getAllProducts } from "../services/getAllProductsService";
 
 interface RouteParams {
   [key: string]: string | undefined;
