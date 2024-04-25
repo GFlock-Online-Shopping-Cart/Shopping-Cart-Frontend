@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavBarButtons } from "../components/navBar";
 import { SingleProduct } from "../components/singleProduct";
@@ -31,10 +31,12 @@ export const SingleProductPage = () => {
     setNewCartItem((prevState) => ({ ...prevState, quantity }));
   };
 
+  
   const handleAddToCart = async () => {
     try {
       await addToCart(getAccessTokenSilently, newCartItem);
       navigate("/cart"); 
+      
     } catch (error: any) {
       return error.message;
     }

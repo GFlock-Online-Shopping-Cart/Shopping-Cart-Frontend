@@ -33,7 +33,7 @@ export const SingleProduct: React.FC<ItemProps> = ({
       <div className="flex gap-[4rem] p-[2rem] items-center justify-center screen-height">
         <div>
           <img
-            className="items-center justify-center flex w-[20rem] h-[20rem]"
+            className="items-center justify-center flex w-[25rem] h-[25rem]"
             src={productItem.productImage}
             alt="product-image"
           />

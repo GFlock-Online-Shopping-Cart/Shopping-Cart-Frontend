@@ -12,6 +12,9 @@ export const LogoutButton = () => {
     };
 
     return (
-        <button className="text-white px-[1rem] font-semibold" onClick={handleLogout}>Logout</button>
+        <div className="flex items-center gap-3 cursor-pointer text-white">
+            <button className="font-semibold" onClick={handleLogout}>Logout</button>
+
+        </div>
     )
 }

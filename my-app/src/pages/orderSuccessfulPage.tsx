@@ -13,7 +13,6 @@ interface RouteParams {
 
 export const OrderSuccessfulPage = () => {
   const { checkoutId } = useParams<RouteParams>();
-  console.log("OOOOO", checkoutId);
   
   const { getAccessTokenSilently, user } = useAuth0();
   const navigate = useNavigate();
@@ -21,14 +20,13 @@ export const OrderSuccessfulPage = () => {
   const [orderSuccess, setOrderSuccess] = useState<SingleOrderType | undefined>();
 
   const handleContinueShopping = async () => {
-    navigate("/products");
+    navigate("/");
   };
 
   
   const handleViewOrder = async () => {
     try {
       getCheckoutById(getAccessTokenSilently, user, Number(checkoutId));
-      console.log("SUUU", checkoutId);
       navigate(`/single-checkout/${checkoutId}`);
     } catch (error: any) {
       return error.message;

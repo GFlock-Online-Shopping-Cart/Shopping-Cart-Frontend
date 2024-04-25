@@ -2,12 +2,10 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { Homepage } from "./pages/homePage";
 import { AuthenticationGuard } from "./components/authenticationGuard";
 import { ProfilePage } from "./pages/profilePage";
 import { CartPage } from "./pages/cartPage";
-import { ProductsPage } from "./pages/productsPage";
+import { ProductsPage } from "./pages/homePage";
 import { CheckoutPage } from "./pages/checkoutPage";
 import { SingleProductPage } from "./pages/singleProductPage";
 import { ProductsByCategoryPage } from "./pages/productsByCategoryPage";
@@ -20,7 +18,7 @@ export const App = () => {
     <Routes>
       {/* public routes */}
       <Route 
-        path="/products" 
+        path="/" 
         element={<ProductsPage />} 
       />
 

@@ -94,7 +94,9 @@ export const CheckoutPage = () => {
   return (
     <>
       <div className="bg-black">
-        <NavBarButtons />
+        <NavBarButtons 
+          // itemCount={cartItemData.length}
+        />
       </div>
 
       <div className="flex gap-4 justify-center">

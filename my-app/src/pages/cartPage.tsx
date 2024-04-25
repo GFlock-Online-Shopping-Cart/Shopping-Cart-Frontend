@@ -60,6 +60,10 @@ export const CartPage = () => {
 
   const handleModify = async (productId: number, quantity: number) => {
     await modifyCart(getAccessTokenSilently, productId, quantity);
+    const updatedCartItems = cartItemData.map((item) => 
+      item.productId === productId ? { ...item, quantity } : item
+    );
+    setCartItemData(updatedCartItems);
   };
 
   const handleProceedToCheckout = async () => {
@@ -73,7 +77,9 @@ export const CartPage = () => {
   return (
     <>
       <div className="bg-black">
-        <NavBarButtons />
+        <NavBarButtons 
+          // itemCount={cartItemData.length}
+        />
       </div>
       <div className="flex gap-4 justify-center">
         <div className="w-1/2">

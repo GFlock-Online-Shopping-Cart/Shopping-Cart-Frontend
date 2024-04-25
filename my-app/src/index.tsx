@@ -12,7 +12,7 @@ const root = createRoot(container!);
 root.render(
   <Router>
     <Auth0ProviderWithNavigate>
-      <App />
+        <App />
     </Auth0ProviderWithNavigate>
   </Router>
 );
