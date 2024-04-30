@@ -37,16 +37,16 @@ export const CartProductCard: React.FC<CartItemProps> = ({cartItems, onDelete, o
                 <p className="text-[1.3rem] font-bold">{cartItems.product.productName}</p>
                 <p>{cartItems.product.description}</p>
                 <p className="text-[1.3rem] font-bold text-red-500">Rs.{cartItems.product.price}.00</p>
-                <div className="flex gap-12 items-center cursor-pointer my-[0.5rem]">
+                <div className="flex gap-12 items-center cursor-pointer my-[0.5rem]" data-testid="quantity-change-icon">
                     <QuantityAdjuster 
                         quantity={cartItems.quantity}
                         onQuantityChange={handleQuantityChange}
                     />
-                    <div onClick={handleModify}>
+                    <div onClick={handleModify} data-testid="modify-icon">
                         <FaPen/>
                     </div>
-                    <div onClick={handleDelete}>
-                        <FaTrash/>
+                    <div onClick={handleDelete} data-testid="delete-icon">
+                        <FaTrash />
                     </div>
                 </div>
             </div>

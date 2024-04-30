@@ -34,13 +34,13 @@ export const QuantityAdjuster: React.FC<QuantityProps> = ({ quantity, minValue =
 
     return (
         <div className="flex gap-3 w-[7rem]">
-            <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleDecrementCounter}>
+            <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleDecrementCounter} data-testid="decrease-button">
                 <span className="font-bold text-[1.2rem]">-</span>
             </button>
             
             <p className="flex items-center justify-center font-semibold w-[1rem]">{count}</p>
 
-            <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleIncrementCounter}>
+            <button className="bg-[#EEEEEE] w-[2rem] h-[2rem] rounded-md" onClick={handleIncrementCounter} data-testid="increase-button">
                 <span className="font-bold text-[1.2rem]">+</span>
             </button>
         </div>

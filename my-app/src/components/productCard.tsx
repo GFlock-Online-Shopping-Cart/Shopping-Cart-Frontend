@@ -13,7 +13,7 @@ export const ProductCard: React.FC<ItemProps> = (productItems) => {
 
     return (
         <>
-        <div onClick={() => handleDivClick(productItems.productItems.id)} className="w-[15rem] h-[23rem] m-[1rem] rounded-lg shadow-lg shadow-black md:shadow-xl md:shadow-black-500 cursor-pointer dark:md:hover:bg-[#EEEEEE] transition-transform duration-100 ease-in-out transform hover:scale-105">
+        <div onClick={() => handleDivClick(productItems.productItems.id)} className="w-[15rem] h-[23rem] m-[1rem] rounded-lg shadow-lg shadow-black md:shadow-xl md:shadow-black-500 cursor-pointer dark:md:hover:bg-[#EEEEEE] transition-transform duration-100 ease-in-out transform hover:scale-105" data-testid="product-card">
             <img src={productItems.productItems.productImage} alt="" className="w-[15rem] h-[15rem] flex items-center"/>
             <div className="flex flex-col items-center px-[1rem]">
                 <p className="text-[1.3rem] font-bold">{productItems.productItems.productName}</p>
