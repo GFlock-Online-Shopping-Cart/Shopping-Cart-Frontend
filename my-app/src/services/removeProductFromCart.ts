@@ -10,8 +10,5 @@ export const removeProductFromCart = async (getAccessTokenSilently: any, user: a
         return data.data;
     } else if (error) {
         return error;
-    } else {
-        return null;
-    }
-    
+    } 
 }

@@ -13,5 +13,5 @@ export const getProductById = async (productId: number) => {
   } catch (error) {
     console.error("Error fetching product data: ", error);
     return null;
-  }
+  } 
 };

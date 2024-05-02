@@ -50,10 +50,13 @@ export const SingleProduct: React.FC<ItemProps> = ({
               quantity={cartItem.quantity}
               onQuantityChange={handleQuantityChange}
             />
-            <ButtonComponent
-              buttonName="Add to Cart"
-              onClick={handleAddToCart}
-            />
+            <div>
+              {}
+              <ButtonComponent
+                buttonName="Add to Cart"
+                onClick={handleAddToCart}
+              />
+            </div>
           </div>
         </div>
       </div>

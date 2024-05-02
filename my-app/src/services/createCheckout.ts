@@ -12,15 +12,11 @@ export const createChcekout = async (getAccessTokenSilently: any, idToken: any) 
     
     console.log("Access Token", accessToken); 
     console.log("Id token", requestBody.idToken);
-       
-
+    
     if (data) {
-        console.log("DATA", data.data);
         return data.data;
         
     } else if (error) {
-        console.log("ERROR",error);
-        
-        return error;
+        return { message: error };
     }
 }

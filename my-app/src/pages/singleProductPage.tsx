@@ -25,7 +25,7 @@ export const SingleProductPage = () => {
     quantity: 1,
   });  
   const navigate = useNavigate();
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handleQuantityChange = (quantity: number) => {
     setNewCartItem((prevState) => ({ ...prevState, quantity }));
@@ -34,6 +34,13 @@ export const SingleProductPage = () => {
   
   const handleAddToCart = async () => {
     try {
+      if(!isAuthenticated) {
+        await loginWithRedirect({
+          appState: {
+            returnTo: `/single-product/${productId}`
+          }
+        })
+      }
       await addToCart(getAccessTokenSilently, newCartItem);
       navigate("/cart"); 
       
@@ -58,6 +65,7 @@ export const SingleProductPage = () => {
       <div className="bg-black">
         <NavBarButtons />
       </div>
+      
       {singleProductData ? (
         <SingleProduct
           key={productId}

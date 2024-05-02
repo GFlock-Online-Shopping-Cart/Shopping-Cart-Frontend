@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { ProductCard } from "../../components/productCard";
 import "@testing-library/jest-dom";
-import { MemoryRouter, Route } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Product card component", () => {
   const productItems = {
