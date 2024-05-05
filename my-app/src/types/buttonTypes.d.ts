@@ -1,0 +1,3 @@
+interface ButtonType {
+    name: string,
+}
