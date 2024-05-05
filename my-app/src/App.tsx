@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import { AuthenticationGuard } from "./components/authenticationGuard";
+import { ProfilePage } from "./pages/profilePage";
+import { CartPage } from "./pages/cartPage";
+import { ProductsPage } from "./pages/homePage";
+import { CheckoutPage } from "./pages/checkoutPage";
+import { SingleProductPage } from "./pages/singleProductPage";
+import { ProductsByCategoryPage } from "./pages/productsByCategoryPage";
+import { OrderHistoryPage } from "./pages/orderHistoryPage";
+import { SingleOrderPage } from "./pages/singleOrderPage";
+import { OrderSuccessfulPage } from "./pages/orderSuccessfulPage";
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Routes>
+      {/* public routes */}
+      <Route 
+        path="/" 
+        element={<ProductsPage />} 
+      />
 
-export default App;
+      <Route
+        path="/single-product/:productId"
+        element={<SingleProductPage />}
+      />
+
+      <Route 
+        path="/products/categoryId/:categoryId"
+        element={<ProductsByCategoryPage/>}
+      />
+
+      {/* protected routes */}
+      <Route 
+        path="/profile" 
+        element={<AuthenticationGuard component={ProfilePage} />} 
+      />
+      <Route 
+        path="/cart"
+        element={<AuthenticationGuard component={CartPage} />}
+      />
+
+      <Route
+        path="/checkout"
+        element={<AuthenticationGuard component={CheckoutPage} />}
+      />
+
+      <Route 
+        path="/order-history"
+        element={<AuthenticationGuard component={OrderHistoryPage} />}
+      />
+
+      <Route 
+        path="/single-checkout/:checkoutId"
+        element={<AuthenticationGuard component={SingleOrderPage} />}
+      />
+
+      <Route 
+        path="/order-successful/:checkoutId"
+        element={<AuthenticationGuard component={OrderSuccessfulPage} />}
+      />
+
+    </Routes>
+  )
+}
