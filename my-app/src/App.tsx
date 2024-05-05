@@ -2,30 +2,23 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { Homepage } from "./pages/homePage";
 import { AuthenticationGuard } from "./components/authenticationGuard";
 import { ProfilePage } from "./pages/profilePage";
 import { CartPage } from "./pages/cartPage";
-import { ProductsPage } from "./pages/productsPage";
+import { ProductsPage } from "./pages/homePage";
 import { CheckoutPage } from "./pages/checkoutPage";
 import { SingleProductPage } from "./pages/singleProductPage";
 import { ProductsByCategoryPage } from "./pages/productsByCategoryPage";
-export const App = () => {
-  // const { isLoading } =useAuth0();
+import { OrderHistoryPage } from "./pages/orderHistoryPage";
+import { SingleOrderPage } from "./pages/singleOrderPage";
+import { OrderSuccessfulPage } from "./pages/orderSuccessfulPage";
 
-  // if(isLoading) {
-  //   return (
-  //     <div>
-        
-  //     </div>
-  //   )
-  // }
+export const App = () => {
   return (
     <Routes>
       {/* public routes */}
       <Route 
-        path="/products" 
+        path="/" 
         element={<ProductsPage />} 
       />
 
@@ -54,5 +47,21 @@ export const App = () => {
         element={<AuthenticationGuard component={CheckoutPage} />}
       />
 
-    </Routes>)
+      <Route 
+        path="/order-history"
+        element={<AuthenticationGuard component={OrderHistoryPage} />}
+      />
+
+      <Route 
+        path="/single-checkout/:checkoutId"
+        element={<AuthenticationGuard component={SingleOrderPage} />}
+      />
+
+      <Route 
+        path="/order-successful/:checkoutId"
+        element={<AuthenticationGuard component={OrderSuccessfulPage} />}
+      />
+
+    </Routes>
+  )
 }

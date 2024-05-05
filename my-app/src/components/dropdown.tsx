@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-import { getPublicResource } from "../services/apiCallServise";
+import { getPublicResource } from "../services/api/apiCallServise";
 
 interface ItemProps {
   categoryItems: CategoryType[];
@@ -44,7 +44,6 @@ export const Dropdown: React.FC<ItemProps> = ({categoryItems, categoryId}) => {
     const categoryId = selectedOption.value;
     const products = await getProductsByCategoryId(categoryId);
     setProductByCategoryIdData(products);
-    console.log("Pfpd", products);
 
     navigate(`/products/categoryId/${categoryId}`);
   };

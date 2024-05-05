@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 interface ItemProps {
   productCategoryItems: CategoryProductsType;
@@ -10,11 +11,6 @@ export const CategoryProductsCard: React.FC<ItemProps> = ({productCategoryItems}
   const hadndleDivClick = async (productId: number) => {
     navigate(`/single-product/${productId}`)
   }
-
-  console.log(productCategoryItems);
-  console.log("eree",productCategoryItems.category_id);
-  
-  
 
   return (
     <div 
